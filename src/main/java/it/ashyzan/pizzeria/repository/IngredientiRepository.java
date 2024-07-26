@@ -8,6 +8,5 @@ import it.ashyzan.pizzeria.model.IngredientiModel;
 public interface IngredientiRepository extends JpaRepository<IngredientiModel, Integer> {
 
     public IngredientiModel findBynomeIngredienteIgnoreCase(String nomeIngrediente);
-//
-//    public Optional<IngredientiModel> findAll(List listaingredienti);
+
 }

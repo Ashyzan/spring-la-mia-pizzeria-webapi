@@ -2,7 +2,6 @@ package it.ashyzan.pizzeria.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,8 +18,8 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests()
 		// qui va messa l'url da tenere sotto controllo
 		.requestMatchers("/ingredienti/**", "/offerte/**", "/pizzeria/create/", "/pizzeria/edit/**").hasAuthority("ADMIN")
-		.requestMatchers(HttpMethod.POST, "/pizzeria/**").hasAuthority("ADMIN")
-		.requestMatchers("/css/**", "/js/**", "/webjars/**", "/img/**").permitAll()
+	//	.requestMatchers(HttpMethod.POST, "/pizzeria/**").hasAuthority("ADMIN")
+	//	.requestMatchers("/css/**", "/js/**", "/webjars/**", "/img/**", "/json/**").permitAll()
 //		.requestMatchers("/admin").hasAnyAuthority("ADMIN", "USER")
 		.requestMatchers("/**").permitAll().and().formLogin().and().logout()
 		.and().exceptionHandling().and().csrf().disable();

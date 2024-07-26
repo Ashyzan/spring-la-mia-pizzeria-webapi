@@ -21,15 +21,17 @@ public class PizzaServiceImplementation implements PizzaService {
 	return pizzarepository.findById(PizzaId);
     }
 
-//    @Override
-//    public Optional<PizzaModel> findAllPizze(List ListaPizze) {
-//	return pizzarepository.findAll(ListaPizze);
-//    }
-//
-//    @Override
-//    public Optional<IngredientiModel> findAllIngredienti(List Listaingredienti) {
-//	return ingredientirepository.findAll(Listaingredienti);
-//    }
+
+    // dico  cosa fare nel caso di post api
+    // ad esempio non posso salvare due pizze con lo stesso nome
+    // quindi vedo se c'è e decido se restituire errore o se 
+    // aggiungere un'altra copia ad esempio.
+    @Override
+    public PizzaModel save(PizzaModel pizza) {
+
+
+	return pizzarepository.save(pizza);
+    }
 
    
     

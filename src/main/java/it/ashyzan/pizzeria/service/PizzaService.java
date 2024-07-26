@@ -12,5 +12,10 @@ import it.ashyzan.pizzeria.model.PizzaModel;
 public interface PizzaService {
 
     public Optional<PizzaModel> findById(Integer id);
+    
+//    salvo la pizza salvata come argomento e 
+//    restituisco l'elemento appena salvato, 
+//    mi serve epr ricavare l'id
+    public PizzaModel save(PizzaModel pizza);
 
 }

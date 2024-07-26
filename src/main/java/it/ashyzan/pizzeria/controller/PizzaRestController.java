@@ -8,11 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.ashyzan.pizzeria.model.PizzaModel;
 import it.ashyzan.pizzeria.service.PizzaService;
+import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
@@ -29,32 +32,37 @@ public class PizzaRestController {
 	
 	if(pizza.isPresent()) {
 	    
-	    return new ResponseEntity<>(pizza.get(), HttpStatus.OK);
+	    return new ResponseEntity<PizzaModel>(pizza.get(), HttpStatus.OK);
 	}
 	else {
 	    return new ResponseEntity<PizzaModel>(HttpStatus.NOT_FOUND);
+	    
 	}
     }
     
-//    @GetMapping
-//    public List<PizzaModel> pizzaindex() {
+    
+    @PostMapping
+	public ResponseEntity store(
+			@Valid @RequestBody PizzaModel pizza) {
+		try {
+		    PizzaModel pizzasalvata = pizzaService.save(pizza);
+			return ResponseEntity.ok(pizzasalvata);
+		} catch(Exception e) {
+			return new ResponseEntity<>("Errore nel salvataggio del libro", 
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+    
+//  @GetMapping
+//  public List<PizzaModel> pizzaindex() {
 //	 return pizzaService.findAll();
 //
-//    }
-    
-//    @GetMapping("/{id}")
-//    public PizzaModel get(@PathVariable Integer PizzaId) {
+//  }
+  
+//  @GetMapping("/{id}")
+//  public PizzaModel get(@PathVariable Integer PizzaId) {
 //	return pizzaService.findById(PizzaId).get();
-//    
-//    }
+//  
+//  }
     
-//    @PostMapping
-//    public Book create(@RequestBody Book book) { ... }
-//    
-//    @PutMapping("{id}")
-//    public Book update(
-//    @RequestBody Book book,
-//    @PathVariable Integer id) { ... }
-//    @DeleteMapping("/{id}")
-//    public void delete(@PathVariable Integer id) { ... }
 }

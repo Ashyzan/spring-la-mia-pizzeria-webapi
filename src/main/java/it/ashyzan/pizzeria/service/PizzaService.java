@@ -17,5 +17,9 @@ public interface PizzaService {
 //    restituisco l'elemento appena salvato, 
 //    mi serve epr ricavare l'id
     public PizzaModel save(PizzaModel pizza);
+    
+    public PizzaModel update(Integer id, PizzaModel pizza);
+	
+    public void delete(Integer id);
 
 }

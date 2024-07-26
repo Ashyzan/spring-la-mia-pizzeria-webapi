@@ -32,7 +32,35 @@ public class PizzaServiceImplementation implements PizzaService {
 
 	return pizzarepository.save(pizza);
     }
+    
+    @Override
+    public PizzaModel update(Integer id, PizzaModel inputpizza){
+	Optional<PizzaModel> pizzacercata = pizzarepository.findById(id);
+	
+	if(pizzacercata.isEmpty()) {
+	    throw new IllegalArgumentException
+	    ("La Pizza cercata con id " +  id + " non esiste");
+	}
+	
+	PizzaModel pizza1 = pizzacercata.get();
+	
+	pizza1.setNome(inputpizza.getNome());
+	pizza1.setDescrizione(inputpizza.getDescrizione());
+	pizza1.setFotourl(inputpizza.getFotourl());
+	pizza1.setIngredienti(inputpizza.getIngredienti());
+	pizza1.setListaIngredienti(inputpizza.getListaIngredienti());
+	
+	
+	return pizzarepository.save(pizza1);
+    }
 
+
+    @Override
+    public void delete(Integer id) {
+	pizzarepository.deleteById(id);
+	
+    }
+    
    
     
 

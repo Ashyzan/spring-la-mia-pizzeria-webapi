@@ -45,7 +45,8 @@ public class PizzaRestController {
     
     @PostMapping
 	public ResponseEntity store(
-			@Valid @RequestBody PizzaModel pizza) {
+			@RequestBody PizzaModel pizza) {
+	
 		try {
 		    PizzaModel pizzasalvata = pizzaService.save(pizza);
 			return ResponseEntity.ok(pizzasalvata);

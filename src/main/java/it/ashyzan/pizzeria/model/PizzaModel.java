@@ -2,7 +2,7 @@ package it.ashyzan.pizzeria.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,11 +47,13 @@ public class PizzaModel {
 	private double prezzo;
 
 	@OneToMany(mappedBy = "pizza")
-	@JsonManagedReference
+//	@JsonManagedReference
+	@JsonIgnore
 	private List<OffertaSpecialeModel> offerte;
 
 	@ManyToMany()
-	@JsonManagedReference
+//	@JsonManagedReference
+	@JsonIgnore
 	@JoinTable(name = "pizza_listaIngredienti", joinColumns = @JoinColumn(name = "pizza_id"), 
 	inverseJoinColumns = @JoinColumn(name = "tabellaingredienti_id"))
 	private List<IngredientiModel> listaIngredienti;
